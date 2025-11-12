@@ -1,7 +1,10 @@
 /F5-TTS-INDO-FINETUNE-V2
+/app/datasets/*
+/TEMP/*
 
 # CACHE FILES PY
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
