@@ -32,52 +32,12 @@ print(f"🚀 Device: {device}")
 print("\n📁 Preparing reference audio...")
 
 # Cek apakah ada WAV file yang sudah ada
-wav_files = [
-    os.path.join(MODEL_PATH, "gen_prabowo.wav"),
-    os.path.join(MODEL_PATH, "gen_reporter.wav"),
-    os.path.join(MODEL_PATH, "gen_windah.wav"),
-]
 
-REF_AUDIO = None
-for wav_file in wav_files:
-    if os.path.exists(wav_file):
-        REF_AUDIO = wav_file
-        print(f"✅ Using existing WAV: {os.path.basename(wav_file)}")
-        break
 
-# Jika tidak ada WAV, konversi dari MP3
-if REF_AUDIO is None:
-    print("🔄 Converting MP3 to WAV...")
-    mp3_file = os.path.join(MODEL_PATH, "ref_prabowo.mp3")
-    wav_file = os.path.join(MODEL_PATH, "ref_prabowo_converted.wav")
+REF_AUDIO = (
+    "/Users/marsudi/PycharmProjects/tts/F5-TTS-INDO-FINETUNE-V2/ref_reporter.mp3"
+)
 
-    try:
-        result = subprocess.run(
-            [
-                "ffmpeg",
-                "-y",
-                "-i",
-                mp3_file,
-                "-ar",
-                "24000",  # 24kHz sample rate
-                "-ac",
-                "1",  # mono
-                wav_file,
-            ],
-            capture_output=True,
-            text=True,
-            check=True,
-        )
-
-        REF_AUDIO = wav_file
-        print(f"✅ Converted: {os.path.basename(wav_file)}")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ FFmpeg error: {e.stderr}")
-        sys.exit(1)
-
-if not os.path.exists(REF_AUDIO):
-    print(f"❌ Reference audio not found!")
-    sys.exit(1)
 
 # ---------------------------------
 # ✅ CEK FILES
