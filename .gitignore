@@ -1,1 +1,7 @@
 /F5-TTS-INDO-FINETUNE-V2
+
+# CACHE FILES PY
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
